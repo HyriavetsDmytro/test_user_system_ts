@@ -11,7 +11,8 @@ const KEY: string = process.env.KEY!;
 import { Request, Response, NextFunction, Router } from 'express';
 import { IsValidReq } from '../util/validation';
 import Controller from '../interfaces/controller_interface';
-import { WrongInfoError } from '../util/errors';
+import { WrongInfoError,UserNotFoundError } from '../util/errors';
+import UserAuthInfo from "../types/auth_user_info";
 
 class AuthenticationController implements Controller{
   public path = '/';
@@ -37,7 +38,12 @@ class AuthenticationController implements Controller{
     }
     try {
       const checkResult = await getUserByEmail(email);
+      if(checkResult[0] === undefined){
+        return res.status(422).json({
+          message: `User with email ${email} not found`,  });
+      }
       const user = checkResult[0];
+     
 
         if(user.password === pin){
           bcrypt.hash(password, saltRounds, async (err, hash) => {
@@ -66,13 +72,18 @@ class AuthenticationController implements Controller{
     let user;
     try {
       const checkResult = await getUserByEmail(email);
+      if(checkResult[0] === undefined){
+        return res.status(422).json({
+          message: `User with email ${email} not found`,  });
+      }
       user = checkResult[0];
     } catch (err) {
       console.log(err);
       return next(err);
       //return res.status(401).json({ message: 'Authentication failed.', error:error });
     }
-    const passwordIsValid = await isValidPassword(password, user.password);
+
+    const passwordIsValid = await isValidPassword(password,user.password);
 
     if (!passwordIsValid) {
       return res.status(422).json({

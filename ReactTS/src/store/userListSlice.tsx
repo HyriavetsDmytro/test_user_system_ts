@@ -39,6 +39,7 @@ const UserListSlice = createSlice({
     },
     logOut: (state,) => {
       state =[];
+      return state;
  
     }
 }})

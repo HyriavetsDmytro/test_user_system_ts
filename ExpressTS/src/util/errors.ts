@@ -38,7 +38,7 @@ export class ExistUserError extends BaseHttpError {
 
 export class UserNotFoundError extends BaseHttpError {
   constructor(email: string) {
-    super(404, `User with id ${email} not found`);
+    super(404, `User with email ${email} not found`);
   }
 }
 

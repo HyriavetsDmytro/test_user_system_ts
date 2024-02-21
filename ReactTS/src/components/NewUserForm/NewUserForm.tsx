@@ -82,11 +82,14 @@ export default function NewUserForm() {
       errorMessage +='Input date birth. '
     }
     searchobject = {...searchobject,role: role==='admin'?'parent':'child'}
-    if(errorMessage.length===0){
-      console.log(searchobject)
+    if(errorMessage.length===0 ){
+     // console.log(searchobject)
+     try {
       await addNewUser(searchobject);
       const { pin, ...rest } = searchobject as InputData;
       dispatch(userListActions.setUserList(rest));
+     }catch {
+      }
     }
     else{
       setErrorOutput(errorMessage);
