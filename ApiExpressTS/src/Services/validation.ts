@@ -1,6 +1,6 @@
 
 import { NextFunction,Request,Response } from 'express';
-import {  BaseHttpError} from './errors';
+import {  BaseHttpError} from '../Entity/errors';
 export function isValidText(value:string, textLength = 1) {
   return value && value.trim().length >= textLength;
 }

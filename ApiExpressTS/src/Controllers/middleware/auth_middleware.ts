@@ -1,7 +1,7 @@
 import { NextFunction, Response, Request} from 'express';
 import * as jwt from 'jsonwebtoken';
-import {AuthTokenMissingError} from '../util/errors';
-import {WrongAuthTokenError} from '../util/errors';
+import {AuthTokenMissingError} from '../../Entity/errors';
+import {WrongAuthTokenError} from '../../Entity/errors';
 
 async function authMiddleware(request: Request, response: Response, next: NextFunction) {
   const cookies = request.cookies;

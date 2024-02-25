@@ -1,27 +1,6 @@
-import pkg from 'jsonwebtoken';
-const { sign, verify } = pkg;
-import { compare }  from 'bcrypt';
-import env from "dotenv";
 import {  Request, Response,NextFunction } from 'express';
-env.config();
-
-
-const KEY: string = process.env.KEY!;
-
-export function createJSONToken(email: string) {
-  return sign({ email }, KEY, { expiresIn: '1h' });
-}
-
-export function validateJSONToken(token: string) {
-  return verify(token, KEY);
-}
-
-export function isValidPassword(password: string, storedPassword: string) {
-  return compare(password, storedPassword);
-}
-
-import { NotAuthorizedError } from './errors';
-
+import { NotAuthorizedError } from '../Entity/errors';
+import { validateJSONToken } from '../Services/auth_validation';
 export function checkAuthMiddleware(req :Request, res: Response, next: NextFunction)
 {
   if (!req.headers.authorization) {

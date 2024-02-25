@@ -1,8 +1,8 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import Controller from './src/interfaces/controller_interface';
-import errorMiddleware from './src/middleware/error_middleware';
-import loggerMiddleware from './src/middleware/logger_midddleware';
+import Controller from './src/Entity/controller_interface';
+import errorMiddleware from './src/Controllers/middleware/error_middleware';
+import loggerMiddleware from './src/Controllers/middleware/logger_midddleware';
 
 class App {
   public app: express.Application;

@@ -1,6 +1,6 @@
 
 import * as bcrypt from "bcrypt";
-import { createJSONToken, isValidPassword } from '../util/auth';
+import { createJSONToken, isValidPassword } from '../../Services/auth_validation';
 import { getUserByEmail, updatePw } from '../data/db_query';
 import env from "dotenv";
 import pkg from 'jsonwebtoken';
@@ -9,10 +9,10 @@ env.config();
 const saltRounds = parseInt(process.env.SALT_ROUND!);
 const KEY: string = process.env.KEY!;
 import { Request, Response, NextFunction, Router } from 'express';
-import { IsValidReq } from '../util/validation';
-import Controller from '../interfaces/controller_interface';
-import { WrongInfoError,UserNotFoundError } from '../util/errors';
-import UserAuthInfo from "../types/auth_user_info";
+import { IsValidReq } from '../../Services/validation';
+import Controller from '../../Entity/controller_interface';
+import { WrongInfoError,UserNotFoundError } from '../../Entity/errors';
+import UserAuthInfo from "../../Entity/auth_user_info";
 
 class AuthenticationController implements Controller{
   public path = '/';

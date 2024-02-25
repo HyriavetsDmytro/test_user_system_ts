@@ -1,13 +1,13 @@
 import { pool } from './db_con';
 import { NextFunction, Request, Response } from 'express';
 import { QueryResult } from 'pg';
-import {ExistUserError,WrongInfoError, UserNotFoundError,BaseHttpError} from '../util/errors'
+import {ExistUserError,WrongInfoError, UserNotFoundError,BaseHttpError} from '../../Entity/errors'
 //import type { Knex } from "knex";
-import UserAuthInfo from '../types/auth_user_info';
+import UserAuthInfo from '../../Entity/auth_user_info';
 import { Knex } from 'knex';
-const knex = require("knex");
+import db from "../../../db/db"
 
-const db = require("../../db/db.ts");
+
 
   export const getUsers = async (req: Request, res: Response): Promise<Response> => {
     try {

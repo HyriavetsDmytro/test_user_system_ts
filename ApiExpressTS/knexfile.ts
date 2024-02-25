@@ -1,14 +1,17 @@
 import type { Knex } from "knex";
 
 // Update with your config settings.
+import moment from 'moment'
+//const moment = require('moment');
+//const { setTypeParser, builtins } = require('pg').types;
+import {types} from 'pg'
+const  {setTypeParser, builtins} = types
 
-const moment = require('moment');
-const { setTypeParser, builtins } = require('pg').types;
 
-setTypeParser(builtins.DATE, (val : Date) => moment(val).format('YYYY-MM-DD'));
+//setTypeParser<string>(builtins.DATE,(val : Date)=> moment(val).format('YYYY-MM-DD') as unknown as any);
 
 
-const config: { [key: string]: Knex.Config } = {
+export const config: { [key: string]: Knex.Config } = {
   // development: {
   //   client: "sqlite3",
   //   connection: {
@@ -19,6 +22,7 @@ const config: { [key: string]: Knex.Config } = {
   development: {
     client: "pg",
     connection: {
+      host: process.env.PG_HOST,
       database: process.env.PG_DATABASE,
       user: process.env.PG_USER,
       password: process.env.PG_PASSWORD
@@ -65,4 +69,4 @@ const config: { [key: string]: Knex.Config } = {
 
 
 
-module.exports = config;
+

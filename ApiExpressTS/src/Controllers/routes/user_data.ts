@@ -1,8 +1,8 @@
 import {  Router } from 'express';
 import { addNewUser, getUsers, getUserByParams } from '../data/db_query';
-import { IsValidReq } from '../util/validation';
-import Controller from '../interfaces/controller_interface';
-import { checkAuthMiddleware } from '../util/auth';
+import { IsValidReq } from '../../Services/validation';
+import Controller from '../../Entity/controller_interface';
+import { checkAuthMiddleware } from '../auth';
 
 class UserDataController implements Controller{
   public path = '/';
