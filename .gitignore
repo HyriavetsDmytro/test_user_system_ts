@@ -8,8 +8,10 @@
 /ReactTS/node_modules
 # testing
 /coverage
-/ExpressTS/.env
-
+/ApiExpressts/.env
+.env
+/ApiExpressts/dist
+/ReactTS/build
 # production
 /build
 
