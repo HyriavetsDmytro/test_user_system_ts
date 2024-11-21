@@ -1,0 +1,51 @@
+version: '3.8'
+
+# Services
+services:
+  # Server service
+  server:
+    build:
+      context: ./ApiExpressTS
+      dockerfile: Dockerfile
+      
+    container_name: backend
+    ports:
+      - "4000:4000"
+    env_file: ./.env
+    environment:
+      - SESSION_SECRET=$SESSION_SECRET
+      - PG_USER=$PG_USER
+      - PG_HOST=$PG_HOST
+      - PG_DATABASE=$PG_DATABASE
+      - PG_PASSWORD=$PG_PASSWORD
+      - PG_PORT=$PG_PORT
+      - SERVER_PORT=$SERVER_PORT
+      - SALT_ROUND=$SALT_ROUND
+      - KEY=$KEY
+    depends_on:
+      - postgresdb
+
+  # Client service
+  client:
+    build:
+      context: ./ReactTS
+      dockerfile: Dockerfile
+
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+
+  # Database service
+
+  postgresdb:
+      image: postgres
+      restart: always
+      container_name: postgres_server
+      env_file: ./.env
+      environment:
+        - POSTGRES_USER=$PG_USER
+        - POSTGRES_PASSWORD=$PG_PASSWORD
+      ports:
+        - "5432:5432"

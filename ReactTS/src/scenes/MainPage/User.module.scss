@@ -1,0 +1,38 @@
+.conter {
+  color: red;
+  margin-left: auto;
+}
+.box {
+  display: flex;
+}
+.mainBox {
+  position: relative;
+  z-index: 1;
+  flex-grow: 1;
+  width: 80%;
+}
+.accordion {
+  width: 100%;
+  margin: 8;
+}
+.accordionTitle {
+  width: calc(100% - 50px);
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  position: absolute;
+  top: 12px;
+}
+.accordionSummary {
+  width: 100%;
+  height: 4em;
+  max-height: 4em;
+  box-sizing: border-box;
+}
+.accordionDesc {
+  width: 90%;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

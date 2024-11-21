@@ -1,0 +1,37 @@
+.container {
+  margin-bottom: 4rem;
+}
+.btn,
+.btnCancel {
+  margin-top: 3rem;
+  margin-left: 1rem;
+}
+.btnCancel {
+  color: red;
+}
+.box {
+  display: flex;
+  justify-content: flex-end;
+}
+.text {
+  color: red;
+}
+
+.paper {
+  margin-block: 3rem;
+  padding: 2rem;
+  border-radius: 6px;
+  background: #b3e5fc;
+
+  @media (min-width: 960px) {
+    margin-block: 6rem;
+    padding: 3rem;
+  }
+}
+
+.inputRow {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin: 8px 0 8px 0;
+}
