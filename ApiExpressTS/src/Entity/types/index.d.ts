@@ -1,11 +1,10 @@
+import { JwtPayload } from 'jsonwebtoken'
 
-import  { JwtPayload } from 'jsonwebtoken';
-
-export{};
+export {}
 declare global {
   namespace Express {
     interface Request {
-        headers: { authorization: string }
+      headers: { authorization: string }
     }
   }
 }

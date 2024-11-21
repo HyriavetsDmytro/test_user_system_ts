@@ -1,72 +1,55 @@
-import type { Knex } from "knex";
+import type { Knex } from 'knex'
+import dotenv from 'dotenv'
 
-// Update with your config settings.
-import moment from 'moment'
-//const moment = require('moment');
-//const { setTypeParser, builtins } = require('pg').types;
-import {types} from 'pg'
-const  {setTypeParser, builtins} = types
-
-
-//setTypeParser<string>(builtins.DATE,(val : Date)=> moment(val).format('YYYY-MM-DD') as unknown as any);
-
+dotenv.config()
 
 export const config: { [key: string]: Knex.Config } = {
-  // development: {
-  //   client: "sqlite3",
-  //   connection: {
-  //     filename: "./dev.sqlite3"
-  //   }
-  // },
-
   development: {
-    client: "pg",
+    client: 'pg',
     connection: {
       host: process.env.PG_HOST,
       database: process.env.PG_DATABASE,
       user: process.env.PG_USER,
-      password: process.env.PG_PASSWORD
+      password: process.env.PG_PASSWORD,
+      timezone: 'UTC',
     },
     migrations: {
-      directory: "./db/migrations",
-    }
+      directory: './db/migrations',
+      tableName: 'knex_migrations',
+    },
   },
 
   staging: {
-    client: "postgresql",
+    client: 'postgresql',
     connection: {
       database: process.env.PG_DATABASE,
       user: process.env.PG_USER,
-      password: process.env.PG_PASSWORD
+      password: process.env.PG_PASSWORD,
     },
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      tableName: "knex_migrations"
-    }
+      tableName: 'knex_migrations',
+    },
   },
 
   production: {
-    client: "postgresql",
+    client: 'postgresql',
     connection: {
       database: process.env.PG_DATABASE,
       user: process.env.PG_USER,
-      password: process.env.PG_PASSWORD
+      password: process.env.PG_PASSWORD,
     },
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      tableName: "knex_migrations"
-    }
-  }
+      tableName: 'knex_migrations',
+    },
+  },
+}
 
-};
-
-
-
-
-
+export default config

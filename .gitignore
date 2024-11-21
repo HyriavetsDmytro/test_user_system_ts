@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-/ExpressTS/node_modules
+/ApiExpressts/node_modules
 /ReactTS/node_modules
 # testing
 /coverage
